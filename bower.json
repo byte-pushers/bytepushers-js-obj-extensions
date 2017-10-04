@@ -1,0 +1,20 @@
+{
+  "name": "bytepushers-js-obj-extensions",
+  "version": "0.0.0",
+  "description": "A collection of core object extensions and general utilities that can be used as base foundational classes.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byte-pushers/bytepushers-js-obj-extensions.git"
+  },
+  "license": "MIT",
+  "author": "Tonté Pouncil <tonte.pouncil@bytepushers.software>",
+  "contributors": [
+    "Tonté Pouncil <pouncilt.developer@gmail.com> "
+  ],
+  "directories": {
+    "lib": "release"
+  },
+  "main": [
+    "release/bytepushers-js-obj-extensions.js"
+  ]
+}

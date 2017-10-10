@@ -222,6 +222,39 @@
             }
         });
     }
+    /**
+     * <p>Static convenience function that determines whether an object is defined and not null.
+     *
+     * @static
+     * @param {Object} someObject The object that will be tested to see if it is defined and not null.
+     * @returns {boolean} True if an object is defined and not null, otherwise returns false.
+     */
+    Object.isDefinedAndNotNull = function (someObject) {
+        var result  = false;
+
+        if (someObject !== undefined && someObject !== null) {
+            result = true;
+        }
+
+        return result;
+    };
+
+    /**
+     * <p>Static convenience function that determines whether an object is undefined or null.
+     *
+     * @static
+     * @param {Object} someObject The object that will be tested to see if it is undefined or null.
+     * @returns {boolean} True if an object is undefined and null, otherwise returns false.
+     */
+    Object.isUndefinedOrNull = function (someObject) {
+        var result  = false;
+
+        if (someObject === undefined || someObject === null) {
+            result = true;
+        }
+
+        return result;
+    };
 
     /* END Object Extensions *
      ****************************************************************************************************/

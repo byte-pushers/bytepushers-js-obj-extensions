@@ -193,6 +193,48 @@ define(['bytepushers'], function(BytePushers) {
             });
 
         });
+        describe('Object', function () {
+
+            it('should be able to determine if target object is defined and not null when target object does exist.', function () {
+                var actualTargetObject = {},
+                    actualResult = Object.isDefinedAndNotNull(actualTargetObject),
+                    expectedResult = true;
+
+                expect(actualResult).toBe(expectedResult);
+            });
+
+            it('should be able to determine if target object is defined and not null when target object does not exist.', function () {
+                var actualTargetObject,
+                    actualResult = Object.isDefinedAndNotNull(actualTargetObject),
+                    expectedResult = false;
+
+                expect(actualResult).toBe(expectedResult);
+            });
+
+            it('should be able to determine if target object is undefined or null when target object is undefined.', function () {
+                var actualTargetObject,
+                    actualResult = Object.isUndefinedOrNull(actualTargetObject),
+                    expectedResult = true;
+
+                expect(actualResult).toBe(expectedResult);
+            });
+
+            it('should be able to determine if target object is undefined or null when target object is null.', function () {
+                var actualTargetObject = null,
+                    actualResult = Object.isUndefinedOrNull(actualTargetObject),
+                    expectedResult = true;
+
+                expect(actualResult).toBe(expectedResult);
+            });
+
+            it('should be able to determine if target object is undefined or null when target object does exist.', function () {
+                var actualTargetObject = {},
+                    actualResult = Object.isUndefinedOrNull(actualTargetObject),
+                    expectedResult = false;
+
+                expect(actualResult).toBe(expectedResult);
+            });
+        });
     });
 });
 

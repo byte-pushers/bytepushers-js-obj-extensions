@@ -6,9 +6,9 @@ fundamental classes.
 
 ## Synopsis
 Byte Pushers Core JavaScript library that supports common object extensions and general utilities that can be used as base
-fundamental classes. This module will be able to decipher and validate code from arrays to be able to tell whether a function is a constructor.
+fundamental classes. This module will be able to decipher and validate code from arrays to be able to tell whether a function is a constructor. This will show you how to use all code
 ## Code Example
-In the following code example, you can include your array as a paramater inside the function to test your code results in an array:
+In the following code example, you insert an array to get the resulting true or false:
 ```javascript
     Object.isArray = function (someArray) {
         var result = false;
@@ -22,7 +22,7 @@ In the following code example, you can include your array as a paramater inside 
     };
     //Your code replaces the (someArray) portion
 ```
-You will use the same logic for testing whether resulting code comes back in a date format with this code:
+You will use the same logic for testing whether resulting code comes back true for a date to be defined as true:
 ```javascript
     Object.isDate = function (someDate) {
         var result = false;
@@ -91,48 +91,83 @@ The test ran will give you true or false for all code so you will quickly be abl
 |Defined & not null or null |
 ## API Reference
 
-|                          Method Called                  |                                             Function Operated                                   |
-|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------|
-| getInstance(ClassReference) method                      | Returns an instance of the ClassReference with exposed private methods in the "_privates" object|
-| getInstance(ClassReference, [ ] );                      | Creates new instance via constructor parameters                                                 |
-| ClassReferenceInstance._privates.somePrivateMethodName()| Calls the private method somePrivateMethodName                                                  |
-| getInstance(ClassReference) method                      | Returns an instance of the ClassReference with exposed private methods in the "_privates" object|
-| getInstance(ClassReference, [ ] );                      | Creates new instance via constructor parameters                                                 |
-| ClassReferenceInstance._privates.somePrivateMethodName()| Calls the private method somePrivateMethodName                                                  |
-| getInstance(ClassReference) method                      | Returns an instance of the ClassReference with exposed private methods in the "_privates" object|
-| getInstance(ClassReference, [ ] );                      | Creates new instance via constructor parameters                                                 |
-| ClassReferenceInstance._privates.somePrivateMethodName()| Calls the private method somePrivateMethodName                                                  |
+|    Method Called                  |                   Function Definition                                   |
+|:----------------------------------|:------------------------------------------------------------------------|
+| Object.isArray                    | |
+| Object.isDate                     | |
+| Object.isString                   | |
+| Object.isNumeric                  | |
+| Object.isBoolean                  | |
+| Object.isDefined                  | |
+| Object.isRegEx                    | |
+| Object.getProperty                | |
+| Object.setProperty                | |
+| Object.hasProperty                | |
+| Object.hasFunction                | |
+| Object.isFunction                 | |
+| Object.isConstructorFunction      | |
+| Object.isDefinedAndNotNull        | |
+| Object.isUndefinedOrNull          | |
 
-
+<!--- TODO: Remember to ask Tonte to whether you use the dot method or parenthesis to finish off the functions.
+            Also remember to ask Tonte about the dependencies so the installation is just as mentioned up top.
+            Ask about how correct the Synopsis is.--->
 
 Use dot notation to access private methods. Class content goes inside of the array for the second parameter.
 ## Tests
-When running test within this module, we use Jasmine. For beginners, use this link right [here](https://jasmine.github.io/pages/getting_started.html). This will show you the documenation on how Jasmine works for testing. Now, this is an example in our **Tester.spec.js** file.
+When running test within this module, we use Jasmine. For beginners, use this link right [here](https://jasmine.github.io/pages/getting_started.html). This will show you the documenation on how Jasmine works for testing. Now, this is an example in our **objectExtensionSpec.js** file.
 ```javascript
-define(['bytepushers', 'Employee'], function(BytePushers) {
-    describe("Tester", function(){
-        it('should be able to call private methods', function () {
-            var emp = (new BytePushers.Tester()).getInstance(Employee);
-            expect(emp).toBeDefined();
-            expect(emp._privates).toBeDefined();
-            expect(emp._privates["getFirstName"]).toBeDefined();
+describe('Object.isArray', function () {
+          it('can tell an object is an array', function() {
+              var result = Object.isArray([1, 3, 45, "d"]);
+
+                expect(result).toBe(true);
+          });
+
+          it('can tell an object is not an array', function () {
+              var obj = {};
+              obj[0] = 1; obj[1] = 2; obj[2] = 3;
+
+              var result = Object.isArray(obj);
+
+              expect(result).toBe(false);
+          });
         });
+//In this example we check the array of [1,3,45, "d"] for being an array.
 
-//In this example we make sure that "emp" is defined after declaring "emp" as a variable.
+        describe("Object.setProperty", function(){
+            it('can set a property', function() {
+                var car = {
+                        model: undefined
+                    },
+                    expectedResult = "Viper";
 
-        it('should be able to create instance via constructor parameters', function () {
-            var actualBirthDate = "07/2/1970";
-            var expectedAge = new Date().getFullYear() - new Date(actualBirthDate).getFullYear();
-            var emp = (new BytePushers.Tester()).getInstance(Employee, ["Tim", "M", "Jones", actualBirthDate, null, "full-time", undefined]);
+                Object.setProperty(car, "model", "Viper");
+                var actualResult1 = Object.getProperty(car, "model");
+                var actualResult2 = car.model;
 
-            expect(emp.getFullName).toBeDefined();
-            expect(emp.getFullName()).toEqual("Tim M Jones");
+                expect(actualResult1).toBe(expectedResult);
+                expect(actualResult2).toBe(expectedResult);
+            });
+            it('can set property by the setter method', function(){
+                var car = {
+                        model: undefined,
+                        setCarModel: function(someCarModel) {
+                            this.model = someCarModel;
+                        }
+                    },
+                expectedResult = "Viper";
+
+                Object.setProperty(car,"carModel", "Viper");
+                var actualResult1 = car.model;
+                var actualResult2 = Object.getProperty(car, "model");
+                expect(actualResult1).toBe(expectedResult);
+                expect(actualResult2).toBe(expectedResult);
+            });
         });
+//In this example we have to test that will make sure that the variable "car"'s properties will be set to the model: viper.
 
-//In this example, we are making sure that we can put in an array as the second parameter and create the new instance
 
-     });
-});
 ```
 
 

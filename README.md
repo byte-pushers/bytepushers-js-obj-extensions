@@ -1,72 +1,35 @@
 # bytepushers-js-test-utils
-Byte Pushers Core JavaScript library that supports core object extensions and general utilities that can be used as base
+Byte Pushers Object Extensions JavaScript library that supports core object extensions and general utilities that can be used as base
 fundamental classes.
 ## Installation
 **npm install bytepushers-js-obj-extensions**
 
 ## Synopsis
-Byte Pushers Core JavaScript library that supports common object extensions and general utilities that can be used as base
+Byte Pushers Object Extensions JavaScript library that supports common object extensions and general utilities that can be used as base
 fundamental classes. This module will be able to decipher and validate code from arrays to be able to tell whether a function is a constructor. This will show you how to use all code
 ## Code Example
-In the following code example, you insert an array to get the resulting true or false:
+In the following code example, we call Object.isArray() method to determine if the array literal passed to this method is an array or not:
 ```javascript
-    Object.isArray = function (someArray) {
-        var result = false;
-        if (Object.isDefined(someArray)) {
-            if (someArray.constructor.toString().indexOf("Array") > -1) {
-                result = true;
-            }
-        }
-
-        return result;
-    };
-    //Your code replaces the (someArray) portion
+var result = Object.isArray([1, 3, 45, "d"]); // result ==> true
+````
+In the following code example, we call Object.isArray() method to determine if the object literal passed to this method is an array or not:
+```javascript
+var obj = {};
+var result = Object.isArray(obj); // result ==> false
 ```
 You will use the same logic for testing whether resulting code comes back true for a date to be defined as true:
 ```javascript
-    Object.isDate = function (someDate) {
-        var result = false;
-        if (Object.isDefined(someDate)) {
-            if (typeof someDate === "object" && someDate instanceof Date) {
-                result = true;
-            }
-        }
+//string
+var obj = "";
+var result = Object.isString(obj); // result ==> true
 
-        return result;
-    };
-    //Your code goes replaces the (someDate) parameter
 ```
 In the following code, you can insert a constructor to validate that same constructor:
 
 ```javascript
-    Object.isConstructorFunction = function (targetFunction) {
-        var isConstructorFunction = false,
-            isNotFirstLetterUppercase;
-
-        if (Object.isFunction(targetFunction)) {
-            isNotFirstLetterUppercase = !(/^[A-Z]/.test(targetFunction.name));
-            isConstructorFunction = true;
-        } else {
-            throw new BytePushers.exceptions.InvalidParameterException("Function(" + targetFunction + ") is not a Function.");
-        }
-
-        if (isNotFirstLetterUppercase) {
-            throw new BytePushers.exceptions.InvalidParameterException("Fist letter of Function(" + targetFunction + ") name must be capitalized.");
-        }
-
-        return isConstructorFunction;
-    };
-
-    if (Function.prototype.name === undefined) {
-        // Add a custom property to all function values
-        // that actually invokes a method to get the value
-        Object.defineProperty(Function.prototype, 'name', {
-            get: function () {
-                return (/function ([^(]*)/).exec(this)[1];
-            }
-        });
-    }
-    //You input the name of your constructor as a reference into the (targetFunction) to get your results
+//constructor
+var obj = {};
+var result = Object.isConstructorFunction(obj); //result ==> false
 ```
 The same injection method is used in all of the functions to test. Be in mind that these are all either static convenience functions or static functions. The trend of injecting the parameters with your code is followed throughout all of the functions. To see any more examples of the non karma test functions, see the **software.bytepushers.object.extensions.js** file located in project.
 ## Motivation
@@ -91,27 +54,29 @@ The test ran will give you true or false for all code so you will quickly be abl
 |Defined & not null or null |
 ## API Reference
 
-|    Method Called                  |                   Function Definition                                   |
+|    Function Named                 |                   Function Description                                  |
 |:----------------------------------|:------------------------------------------------------------------------|
-| Object.isArray                    | |
-| Object.isDate                     | |
-| Object.isString                   | |
-| Object.isNumeric                  | |
-| Object.isBoolean                  | |
-| Object.isDefined                  | |
-| Object.isRegEx                    | |
-| Object.getProperty                | |
-| Object.setProperty                | |
-| Object.hasProperty                | |
-| Object.hasFunction                | |
-| Object.isFunction                 | |
-| Object.isConstructorFunction      | |
-| Object.isDefinedAndNotNull        | |
-| Object.isUndefinedOrNull          | |
-
+| Object.isArray(someArrayObject)                |Static function that tells you whether someArrayObject is an array. Returns true if someArrayObject is an array; otherwise returns false.|
+| Object.isDate(someDateObject)                  |Static function that tells you whether someDateObject is a date or not. Returns true if someDateObject is an array; otherwise returns false. |
+| Object.isString(someStringObject)              |Static function that tells you whether someStringObject is a string or not. Returns true if someString is an array; otherwise returns false. |
+| Object.isNumeric(someNumericObject)            |Static function that tells you whether someNumericObject is numeric or not. Returns true if someNumericObject is an array; otherwise returns false.  |
+| Object.isBoolean(someBooleanObject)            |Static function that tells you whether someBooleanObject is a boolean or not. Returns true if someBooleanObject is an array; otherwise returns false. |
+| Object.isDefined(someDefinedObject)            |Static function that tells you whether someDefinedObject is defined or not. Returns true if someDefinedObject is an array; otherwise returns false. |
+| Object.isRegEx(someRegExObject)                |Static function that tells you whether someRegExObject is defined or not. Returns true if someRegExObject is an array; otherwise returns false. |
+| Object.getProperty(somePropertyObject)         |Static function that tells you whether somePropertyObject is caught or not. Returns true if somePropertyObject is an array; otherwise returns false. |
+| Object.setProperty(somePropertyObject)         |Static function that tells you whether somePropertyObject is set or not. Returns true if somePropertyObject is an array; otherwise returns false. |
+| Object.hasProperty(somePropertyObject)         |Static function that tells you whether somePropertyObject is defined or not. Returns true if somePropertyObject is an array; otherwise returns false. |
+| Object.hasFunction(someFunctionObject)         |Static function that tells you whether someFunctionObject is found or not. Returns true if someFunctionObject is an array; otherwise returns false. |
+| Object.isFunction(someFunctionObject)          |Static function that tells you whether someFunctionObject is defined or not. Returns true if someFunctionObject is an array; otherwise returns false. |
+| Object.isConstructorFunction(someConstructor)  |Static function that tells you whether someConstructor is defined as a constructor. Returns true if someConstructor is an array; otherwise returns false. |
+| Object.isDefinedAndNotNull(someObject)         |Static convenience function that determines whether an object is defined and not null. |
+| Object.isUndefinedOrNull(someObject)           |Static convenience function that determines whether an object is undefined or null. |
+<!--- for all "is" use some object, for the function description figure out how to get a paragraph within using the params and returns
+      --->
 <!--- TODO: Remember to ask Tonte to whether you use the dot method or parenthesis to finish off the functions.
             Also remember to ask Tonte about the dependencies so the installation is just as mentioned up top.
-            Ask about how correct the Synopsis is.--->
+            Ask about how correct the Synopsis is.
+            go throught the steps of making sure the installation --->
 
 Use dot notation to access private methods. Class content goes inside of the array for the second parameter.
 ## Tests

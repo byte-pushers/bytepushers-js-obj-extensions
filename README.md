@@ -27,27 +27,20 @@ In the following code example, we call Object.isString() method to determine if 
 //string
 var result = Object.isString(100); // result ==> false
 ```
-The same injection method is used in all of the functions to test. Be in mind that these are all either static convenience functions or static functions. The trend of injecting the parameters with your code is followed throughout all of the functions. To see any more examples of the non karma test functions, see the **software.bytepushers.object.extensions.js** file located in project.
+The same injection method is used in all of the functions to test. Be in mind that these are all either static convenience functions or static functions. The trend of injecting your code as a parameter is followed throughout all of the function.
 ## Motivation
 The motivation behind the creation of the software.bytepushers.object.extensions.js is to create pre-made test for your code. This can be a time saver by keeping you away from "console.log()".
 The test ran will give you true or false for all code so you will quickly be able to tell whether the specified code is defined as expected.
 
-|     Testable Objects      |
-|:--------------------------|
-|Arrays                     |
-|Dates                      |
-|Strings                    |
-|Numerics                   |
-|Booleans                   |
-|Defined                    |
-|Regular Expressions        |
-|Gets Properties            |
-|Sets Properties            |
-|Has Properties             |
-|Has Function               |
-|Functions                  |
-|Constructors               |
-|Defined & not null or null |
+|     Testable Objects      |                            |
+|:--------------------------|:---------------------------|
+|Arrays                     | Gets Properties            |
+|Dates                      | Sets Properties            |
+|Strings                    | Has Properties             |
+|Numerics                   | Has Function               |
+|Booleans                   | Functions                  |
+|Defined                    | Constructors               |
+|Regular Expressions        | Defined & not null or null |
 ## API Reference
 
 |    Function Named                 |                   Function Description                                  |

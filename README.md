@@ -1,4 +1,4 @@
-# bytepushers-js-test-utils
+# bytepushers-js-obj-extensions
 Byte Pushers Object Extensions JavaScript library that supports core object extensions and general utilities that can be used as base
 fundamental classes.
 ## Installation
@@ -17,19 +17,15 @@ In the following code example, we call Object.isArray() method to determine if t
 var obj = {};
 var result = Object.isArray(obj); // result ==> false
 ```
-You will use the same logic for testing whether resulting code comes back true for a date to be defined as true:
+In the following code example, we call Object.isString() method to determine if the string literal passed to this method is a string or not:
 ```javascript
 //string
-var obj = "";
-var result = Object.isString(obj); // result ==> true
-
+var result = Object.isString("some string"); // result ==> true
 ```
-In the following code, you can insert a constructor to validate that same constructor:
-
+In the following code example, we call Object.isString() method to determine if the numeric literal passed to this method is a string or not:
 ```javascript
-//constructor
-var obj = {};
-var result = Object.isConstructorFunction(obj); //result ==> false
+//string
+var result = Object.isString(100); // result ==> false
 ```
 The same injection method is used in all of the functions to test. Be in mind that these are all either static convenience functions or static functions. The trend of injecting the parameters with your code is followed throughout all of the functions. To see any more examples of the non karma test functions, see the **software.bytepushers.object.extensions.js** file located in project.
 ## Motivation
@@ -71,14 +67,9 @@ The test ran will give you true or false for all code so you will quickly be abl
 | Object.isConstructorFunction(someConstructor)  |Static function that tells you whether someConstructor is defined as a constructor. Returns true if someConstructor is an array; otherwise returns false. |
 | Object.isDefinedAndNotNull(someObject)         |Static convenience function that determines whether an object is defined and not null. |
 | Object.isUndefinedOrNull(someObject)           |Static convenience function that determines whether an object is undefined or null. |
-<!--- for all "is" use some object, for the function description figure out how to get a paragraph within using the params and returns
-      --->
-<!--- TODO: Remember to ask Tonte to whether you use the dot method or parenthesis to finish off the functions.
-            Also remember to ask Tonte about the dependencies so the installation is just as mentioned up top.
-            Ask about how correct the Synopsis is.
-            go throught the steps of making sure the installation --->
 
-Use dot notation to access private methods. Class content goes inside of the array for the second parameter.
+<!--- TODO:  --->
+
 ## Tests
 When running test within this module, we use Jasmine. For beginners, use this link right [here](https://jasmine.github.io/pages/getting_started.html). This will show you the documenation on how Jasmine works for testing. Now, this is an example in our **objectExtensionSpec.js** file.
 ```javascript

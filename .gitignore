@@ -72,6 +72,7 @@ crashlytics-build.properties
 fabric.properties
 
 node_modules
+release
 
 target
 build

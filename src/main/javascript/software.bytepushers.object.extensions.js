@@ -3,9 +3,9 @@
  */
 /*global window, document*/
 /* jshint -W108, -W109 */
-/*jslint bitwise: true, unparam: true, regexp: true*/
+/* jslint bitwise: true, unparam: true, regexp: true, this: true*/
 
-(function (window, document) {
+(function (window) {
     'use strict';
     var BytePushers;
 
@@ -128,7 +128,7 @@
         var result = false;
 
         if (Object.isDefined(someRegEx)) {
-            if ((typeof someRegEx === "object" ||  someRegEx instanceof RegExp)) {
+            if (typeof someRegEx === "object" || someRegEx instanceof RegExp) {
                 result = true;
             }
         }
@@ -218,7 +218,7 @@
         // that actually invokes a method to get the value
         Object.defineProperty(Function.prototype, 'name', {
             get: function () {
-                return (/function ([^(]*)/).exec(this)[1];
+                return (/function\s([^(]*)/).exec(this)[1];
             }
         });
     }
@@ -230,7 +230,7 @@
      * @returns {boolean} True if an object is defined and not null, otherwise returns false.
      */
     Object.isDefinedAndNotNull = function (someObject) {
-        var result  = false;
+        var result = false;
 
         if (someObject !== undefined && someObject !== null) {
             result = true;
@@ -247,7 +247,7 @@
      * @returns {boolean} True if an object is undefined and null, otherwise returns false.
      */
     Object.isUndefinedOrNull = function (someObject) {
-        var result  = false;
+        var result = false;
 
         if (someObject === undefined || someObject === null) {
             result = true;
@@ -258,4 +258,4 @@
 
     /* END Object Extensions *
      ****************************************************************************************************/
-}(window, document));
+}(window));

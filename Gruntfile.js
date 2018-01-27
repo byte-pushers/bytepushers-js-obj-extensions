@@ -24,7 +24,8 @@ module.exports = function (grunt) {
             javascript: {
                 options: {
                     edition: 'latest',
-                    errorsOnly: true
+                    errorsOnly: true,
+                    failOnError: false
                 },
                 src: ['src/main/javascript/**/*.js']
             }

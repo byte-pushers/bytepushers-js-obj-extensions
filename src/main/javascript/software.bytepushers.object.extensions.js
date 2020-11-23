@@ -5,17 +5,8 @@
 /* jshint -W108, -W109 */
 /* jslint bitwise: true, unparam: true, regexp: true, this: true*/
 
-(function (window) {
+(function () {
     'use strict';
-    var BytePushers;
-
-    if (window.BytePushers !== undefined && window.BytePushers !== null) {
-        BytePushers = window.BytePushers;
-    } else {
-        window.BytePushers = {};
-        BytePushers = window.BytePushers;
-    }
-
 
     /****************************************************************************************************
      * BEGIN Object Extensions */
@@ -258,4 +249,4 @@
 
     /* END Object Extensions *
      ****************************************************************************************************/
-}(window));
+}());

@@ -1,6 +1,6 @@
 {
   "name": "bytepushers-js-obj-extensions",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A collection of core object extensions and general utilities that can be used as base foundational classes.",
   "repository": {
     "type": "git",
@@ -42,7 +42,6 @@
     "requirejs": "^2.1.22"
   },
   "scripts": {
-    "postinstall": "bower install",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1",
     "pretest": "npm install",

@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         },
         copy: {
             build: {
-                files: [{expand: true, src: ['src/main/javascript/*.js'], dest: 'build/', filter: 'isFile'}]
+                files: [{expand: true, src: ['src/main/javascript/*.js', 'src/main/javascript/*.d.ts'], dest: 'build/', filter: 'isFile'}]
             },
             release: {
                 files: [
@@ -49,7 +49,8 @@ module.exports = function (grunt) {
                         src: [
                             'build/<%= pkg.name %>.min.js',
                             'build/<%= pkg.name %>.js',
-                            'build/src/main/javascript/index.js'
+                            'build/src/main/javascript/index.js',
+                            'build/src/main/javascript/*.d.ts'
                         ],
                         dest: 'release/',
                         filter: 'isFile',
@@ -107,8 +108,6 @@ module.exports = function (grunt) {
             }
         }
     });
-    
-    
 
     var build = grunt.option('target') || 'build';
     var release = grunt.option('target') || 'release';
@@ -133,5 +132,14 @@ module.exports = function (grunt) {
     grunt.registerTask('test-karma-ci', ['karma:' + karma_ci]);
     grunt.registerTask('package', ['copy:' + build, 'uglify', 'concat']);
     grunt.registerTask('build', ['clean:' + build, 'validate', 'test', 'package']);
-    grunt.registerTask('release', ['clean:release', 'build', 'copy:release', 'bump', 'npm-publish']);
+    //grunt.registerTask('release', ['clean:release', 'build', 'copy:release', 'bump', 'npm-publish']);
+    grunt.registerTask('release', function (target) {
+        target = (target === null || target === undefined) ? "patch" : target;
+
+        grunt.task.run("clean:release");
+        grunt.task.run("build");
+        grunt.task.run("copy:release");
+        grunt.task.run("bump:"+ target);
+        grunt.task.run("npm-publish");
+    });
 };

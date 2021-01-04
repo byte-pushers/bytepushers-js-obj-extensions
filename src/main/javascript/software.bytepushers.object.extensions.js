@@ -16,7 +16,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isDefined) {
-        Object.isDefined = Object.prototype.isDefined = function (target) {
+        Object.prototype.isDefined = function (target) {
             var result = false;
             if (target !== undefined && target !== null) {
                 result = true;
@@ -35,7 +35,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isArray) {
-        Object.isArray = Object.prototype.isArray = function (someArray) {
+        Object.prototype.isArray = function (someArray) {
             var result = false;
             if (Object.prototype.isDefined(someArray)) {
                 if (someArray.constructor.toString().indexOf("Array") > -1) {
@@ -55,7 +55,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isDate) {
-        Object.isDate = Object.prototype.isDate = function (someDate) {
+        Object.prototype.isDate = function (someDate) {
             var result = false;
             if (Object.prototype.isDefined(someDate)) {
                 if (typeof someDate === "object" && someDate instanceof Date) {
@@ -75,7 +75,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isString) {
-        Object.isString = Object.prototype.isString = function (someString) {
+        Object.prototype.isString = function (someString) {
             var result = false;
             if (Object.prototype.isDefined(someString)) {
                 if (typeof someString === "string" || (typeof someString === "object" && someString instanceof String)) {
@@ -97,7 +97,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isNumeric) {
-        Object.isNumeric = Object.prototype.isNumeric = function (someNumber) {
+        Object.prototype.isNumeric = function (someNumber) {
             var result = false;
             if (Object.prototype.isDefined(someNumber) && !isNaN(someNumber)) {
                 if (typeof someNumber === "number" || (typeof someNumber === "object" && someNumber instanceof Number)) {
@@ -117,7 +117,7 @@
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
     if (!Object.isBoolean) {
-        Object.isBoolean = Object.prototype.isBoolean = function (someBoolean) {
+        Object.prototype.isBoolean = function (someBoolean) {
             var result = false;
             if (Object.prototype.isDefined(someBoolean)) {
                 if (typeof someBoolean === "boolean" || (typeof someBoolean === "object" && someBoolean instanceof Boolean)) {
@@ -130,7 +130,7 @@
     }
 
     if (!Object.isRegEx) {
-        Object.isRegEx = Object.prototype.isRegEx = function (someRegEx) {
+        Object.prototype.isRegEx = function (someRegEx) {
             var result = false;
 
             if (Object.prototype.isDefined(someRegEx)) {
@@ -144,7 +144,7 @@
     }
 
     if (!Object.getProperty) {
-        Object.getProperty = Object.prototype.getProperty = function (obj, p) {
+        Object.prototype.getProperty = function (obj, p) {
             var pFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1),
                 value = null;
 
@@ -164,7 +164,7 @@
     }
 
     if (!Object.setProperty) {
-        Object.setProperty = Object.prototype.setProperty = function (obj, p, v) {
+        Object.prototype.setProperty = function (obj, p, v) {
             var pFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1);
 
             if (Object.hasProperty(obj, p)) {
@@ -176,7 +176,7 @@
     }
 
     if (!Object.hasProperty) {
-        Object.hasProperty = Object.prototype.hasProperty = function (obj, p) {
+        Object.prototype.hasProperty = function (obj, p) {
             var hasProperty = false;
 
             if (obj.hasOwnProperty(p)) {
@@ -188,7 +188,7 @@
     }
 
     if (!Object.hasFunction) {
-        Object.hasFunction = Object.prototype.hasFunction = function (obj, p) {
+        Object.prototype.hasFunction = function (obj, p) {
             var hasFunction = false,
                 pSetFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1),
                 pGetFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1);
@@ -204,7 +204,7 @@
     }
 
     if (!Object.isFunction) {
-        Object.isFunction = Object.prototype.isFunction = function (target) {
+        Object.prototype.isFunction = function (target) {
             var isFunction = false;
 
             if (Object.isDefined(target)) {
@@ -218,7 +218,7 @@
     }
 
     if (!Object.isConstructorFunction) {
-        Object.isConstructorFunction = Object.prototype.isConstructorFunction = function (targetFunction) {
+        Object.prototype.isConstructorFunction = function (targetFunction) {
             var isConstructorFunction = false,
                 isNotFirstLetterUppercase;
 
@@ -254,7 +254,7 @@
      * @returns {boolean} True if an object is defined and not null, otherwise returns false.
      */
     if (!Object.isDefinedAndNotNull) {
-        Object.isDefinedAndNotNull = Object.prototype.isDefinedAndNotNull = function (someObject) {
+        Object.prototype.isDefinedAndNotNull = function (someObject) {
             var result = false;
 
             if (someObject !== undefined && someObject !== null) {
@@ -273,7 +273,7 @@
      * @returns {boolean} True if an object is undefined and null, otherwise returns false.
      */
     if (!Object.isUndefinedOrNull) {
-        Object.isUndefinedOrNull = Object.prototype.isUndefinedOrNull = function (someObject) {
+        Object.prototype.isUndefinedOrNull = function (someObject) {
             var result = false;
 
             if (someObject === undefined || someObject === null) {

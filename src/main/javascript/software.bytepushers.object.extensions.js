@@ -15,13 +15,15 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is defined, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isDefined = function (target) {
-        var result = false;
-        if (target !== undefined && target !== null) {
-            result = true;
-        }
-        return result;
-    };
+    if (!Object.isDefined) {
+        Object.isDefined = Object.prototype.isDefined = function (target) {
+            var result = false;
+            if (target !== undefined && target !== null) {
+                result = true;
+            }
+            return result;
+        };
+    }
 
     /****************************************************************************************************
      * BEGIN Object Extensions */
@@ -32,16 +34,18 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an array, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isArray = function (someArray) {
-        var result = false;
-        if (Object.prototype.isDefined(someArray)) {
-            if (someArray.constructor.toString().indexOf("Array") > -1) {
-                result = true;
+    if (!Object.isArray) {
+        Object.isArray = Object.prototype.isArray = function (someArray) {
+            var result = false;
+            if (Object.prototype.isDefined(someArray)) {
+                if (someArray.constructor.toString().indexOf("Array") > -1) {
+                    result = true;
+                }
             }
-        }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
     /**
      * <p>Static function that tells you whether an object is a date or not.</p>
@@ -50,16 +54,19 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an date, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isDate = function (someDate) {
-        var result = false;
-        if (Object.prototype.isDefined(someDate)) {
-            if (typeof someDate === "object" && someDate instanceof Date) {
-                result = true;
+    if (!Object.isDate) {
+        Object.isDate = Object.prototype.isDate = function (someDate) {
+            var result = false;
+            if (Object.prototype.isDefined(someDate)) {
+                if (typeof someDate === "object" && someDate instanceof Date) {
+                    result = true;
+                }
             }
-        }
 
-        return result;
-    };
+            return result;
+        };
+    }
+
     /**
      * <p>Static function that tells you whether an object is a string or not.</p>
      * @static
@@ -67,18 +74,20 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an string, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isString = function (someString) {
-        var result = false;
-        if (Object.prototype.isDefined(someString)) {
-            if (typeof someString === "string" || (typeof someString === "object" && someString instanceof String)) {
-                if (someString.trim().length > 0) {
-                    result = true;
+    if (!Object.isString) {
+        Object.isString = Object.prototype.isString = function (someString) {
+            var result = false;
+            if (Object.prototype.isDefined(someString)) {
+                if (typeof someString === "string" || (typeof someString === "object" && someString instanceof String)) {
+                    if (someString.trim().length > 0) {
+                        result = true;
+                    }
                 }
             }
-        }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
     /**
      * <p>Static function that tells you whether an object is numeric or not.</p>
@@ -87,16 +96,18 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is numeric, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isNumeric = function (someNumber) {
-        var result = false;
-        if (Object.prototype.isDefined(someNumber) && !isNaN(someNumber)) {
-            if (typeof someNumber === "number" || (typeof someNumber === "object" && someNumber instanceof Number)) {
-                result = true;
+    if (!Object.isNumeric) {
+        Object.isNumeric = Object.prototype.isNumeric = function (someNumber) {
+            var result = false;
+            if (Object.prototype.isDefined(someNumber) && !isNaN(someNumber)) {
+                if (typeof someNumber === "number" || (typeof someNumber === "object" && someNumber instanceof Number)) {
+                    result = true;
+                }
             }
-        }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
     /**
      * <p>Static function that tells you whether an object is a boolean or not.</p>
@@ -105,105 +116,126 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is a boolean, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.prototype.isBoolean = function (someBoolean) {
-        var result = false;
-        if (Object.prototype.isDefined(someBoolean)) {
-            if (typeof someBoolean === "boolean" || (typeof someBoolean === "object" && someBoolean instanceof Boolean)) {
-                result = true;
+    if (!Object.isBoolean) {
+        Object.isBoolean = Object.prototype.isBoolean = function (someBoolean) {
+            var result = false;
+            if (Object.prototype.isDefined(someBoolean)) {
+                if (typeof someBoolean === "boolean" || (typeof someBoolean === "object" && someBoolean instanceof Boolean)) {
+                    result = true;
+                }
             }
-        }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
-    Object.prototype.isRegEx = function (someRegEx) {
-        var result = false;
+    if (!Object.isRegEx) {
+        Object.isRegEx = Object.prototype.isRegEx = function (someRegEx) {
+            var result = false;
 
-        if (Object.prototype.isDefined(someRegEx)) {
-            if (typeof someRegEx === "object" || someRegEx instanceof RegExp) {
-                result = true;
+            if (Object.prototype.isDefined(someRegEx)) {
+                if (typeof someRegEx === "object" || someRegEx instanceof RegExp) {
+                    result = true;
+                }
             }
-        }
 
-        return result;
-    };
-    Object.prototype.getProperty = function (obj, p) {
-        var pFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1),
-            value = null;
+            return result;
+        };
+    }
 
-        if (Object.prototype.isString(obj)) {
-            obj = JSON.parse(obj);
-            value = obj[p];
-        } else {
-            if (Object.hasProperty(obj, p)) {
+    if (!Object.getProperty) {
+        Object.getProperty = Object.prototype.getProperty = function (obj, p) {
+            var pFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1),
+                value = null;
+
+            if (Object.prototype.isString(obj)) {
+                obj = JSON.parse(obj);
                 value = obj[p];
+            } else {
+                if (Object.hasProperty(obj, p)) {
+                    value = obj[p];
+                } else if (typeof obj[pFunction] === "function") {
+                    value = obj[pFunction]();
+                }
+            }
+
+            return value;
+        };
+    }
+
+    if (!Object.setProperty) {
+        Object.setProperty = Object.prototype.setProperty = function (obj, p, v) {
+            var pFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1);
+
+            if (Object.hasProperty(obj, p)) {
+                obj[p] = v;
             } else if (typeof obj[pFunction] === "function") {
-                value = obj[pFunction]();
+                obj[pFunction](v);
             }
-        }
+        };
+    }
 
-        return value;
-    };
-    Object.prototype.setProperty = function (obj, p, v) {
-        var pFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1);
+    if (!Object.hasProperty) {
+        Object.hasProperty = Object.prototype.hasProperty = function (obj, p) {
+            var hasProperty = false;
 
-        if (Object.hasProperty(obj, p)) {
-            obj[p] = v;
-        } else if (typeof obj[pFunction] === "function") {
-            obj[pFunction](v);
-        }
-    };
-    Object.prototype.hasProperty = function (obj, p) {
-        var hasProperty = false;
-
-        if (obj.hasOwnProperty(p)) {
-            hasProperty = true;
-        }
-
-        return hasProperty;
-    };
-    Object.prototype.hasFunction = function (obj, p) {
-        var hasFunction = false,
-            pSetFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1),
-            pGetFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1);
-
-        if (typeof obj[pSetFunction] === "function") {
-            hasFunction = true;
-        } else if (typeof obj[pGetFunction] === "function") {
-            hasFunction = true;
-        }
-
-        return hasFunction;
-    };
-    Object.prototype.isFunction = function (target) {
-        var isFunction = false;
-
-        if (Object.isDefined(target)) {
-            if (typeof target === "function") {
-                isFunction = true;
+            if (obj.hasOwnProperty(p)) {
+                hasProperty = true;
             }
-        }
 
-        return isFunction;
-    };
+            return hasProperty;
+        };
+    }
 
-    Object.prototype.isConstructorFunction = function (targetFunction) {
-        var isConstructorFunction = false,
-            isNotFirstLetterUppercase;
+    if (!Object.hasFunction) {
+        Object.hasFunction = Object.prototype.hasFunction = function (obj, p) {
+            var hasFunction = false,
+                pSetFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1),
+                pGetFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1);
 
-        if (Object.isFunction(targetFunction)) {
-            isNotFirstLetterUppercase = !(/^[A-Z]/.test(targetFunction.name));
-            isConstructorFunction = true;
-        } else {
-            throw new BytePushers.exceptions.InvalidParameterException("Function(" + targetFunction + ") is not a Function.");
-        }
+            if (typeof obj[pSetFunction] === "function") {
+                hasFunction = true;
+            } else if (typeof obj[pGetFunction] === "function") {
+                hasFunction = true;
+            }
 
-        if (isNotFirstLetterUppercase) {
-            throw new BytePushers.exceptions.InvalidParameterException("Fist letter of Function(" + targetFunction + ") name must be capitalized.");
-        }
+            return hasFunction;
+        };
+    }
 
-        return isConstructorFunction;
-    };
+    if (!Object.isFunction) {
+        Object.isFunction = Object.prototype.isFunction = function (target) {
+            var isFunction = false;
+
+            if (Object.isDefined(target)) {
+                if (typeof target === "function") {
+                    isFunction = true;
+                }
+            }
+
+            return isFunction;
+        };
+    }
+
+    if (!Object.isConstructorFunction) {
+        Object.isConstructorFunction = Object.prototype.isConstructorFunction = function (targetFunction) {
+            var isConstructorFunction = false,
+                isNotFirstLetterUppercase;
+
+            if (Object.isFunction(targetFunction)) {
+                isNotFirstLetterUppercase = !(/^[A-Z]/.test(targetFunction.name));
+                isConstructorFunction = true;
+            } else {
+                throw new BytePushers.exceptions.InvalidParameterException("Function(" + targetFunction + ") is not a Function.");
+            }
+
+            if (isNotFirstLetterUppercase) {
+                throw new BytePushers.exceptions.InvalidParameterException("Fist letter of Function(" + targetFunction + ") name must be capitalized.");
+            }
+
+            return isConstructorFunction;
+        };
+    }
 
     if (Function.prototype.name === undefined) {
         // Add a custom property to all function values
@@ -221,15 +253,17 @@
      * @param {Object} someObject The object that will be tested to see if it is defined and not null.
      * @returns {boolean} True if an object is defined and not null, otherwise returns false.
      */
-    Object.prototype.isDefinedAndNotNull = function (someObject) {
-        var result = false;
+    if (!Object.isDefinedAndNotNull) {
+        Object.isDefinedAndNotNull = Object.prototype.isDefinedAndNotNull = function (someObject) {
+            var result = false;
 
-        if (someObject !== undefined && someObject !== null) {
-            result = true;
-        }
+            if (someObject !== undefined && someObject !== null) {
+                result = true;
+            }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
     /**
      * <p>Static convenience function that determines whether an object is undefined or null.
@@ -238,15 +272,17 @@
      * @param {Object} someObject The object that will be tested to see if it is undefined or null.
      * @returns {boolean} True if an object is undefined and null, otherwise returns false.
      */
-    Object.prototype.isUndefinedOrNull = function (someObject) {
-        var result = false;
+    if (!Object.isUndefinedOrNull) {
+        Object.isUndefinedOrNull = Object.prototype.isUndefinedOrNull = function (someObject) {
+            var result = false;
 
-        if (someObject === undefined || someObject === null) {
-            result = true;
-        }
+            if (someObject === undefined || someObject === null) {
+                result = true;
+            }
 
-        return result;
-    };
+            return result;
+        };
+    }
 
     /* END Object Extensions *
      ****************************************************************************************************/

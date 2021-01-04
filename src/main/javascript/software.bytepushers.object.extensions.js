@@ -8,6 +8,21 @@
 (function () {
     'use strict';
 
+    /**
+     * <p>Static function that tells you whether an object is defined or not.</p>
+     * @static
+     * @param <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Object of some type</a> The object that will be tested to see if it is defined.
+     * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is defined, otherwise false.
+     * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
+     */
+    Object.prototype.isDefined = function (target) {
+        var result = false;
+        if (target !== undefined && target !== null) {
+            result = true;
+        }
+        return result;
+    };
+
     /****************************************************************************************************
      * BEGIN Object Extensions */
     /**
@@ -17,9 +32,9 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an array, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.isArray = function (someArray) {
+    Object.prototype.isArray = function (someArray) {
         var result = false;
-        if (Object.isDefined(someArray)) {
+        if (Object.prototype.isDefined(someArray)) {
             if (someArray.constructor.toString().indexOf("Array") > -1) {
                 result = true;
             }
@@ -35,9 +50,9 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an date, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.isDate = function (someDate) {
+    Object.prototype.isDate = function (someDate) {
         var result = false;
-        if (Object.isDefined(someDate)) {
+        if (Object.prototype.isDefined(someDate)) {
             if (typeof someDate === "object" && someDate instanceof Date) {
                 result = true;
             }
@@ -52,9 +67,9 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is an string, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.isString = function (someString) {
+    Object.prototype.isString = function (someString) {
         var result = false;
-        if (Object.isDefined(someString)) {
+        if (Object.prototype.isDefined(someString)) {
             if (typeof someString === "string" || (typeof someString === "object" && someString instanceof String)) {
                 if (someString.trim().length > 0) {
                     result = true;
@@ -72,9 +87,9 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is numeric, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.isNumeric = function (someNumber) {
+    Object.prototype.isNumeric = function (someNumber) {
         var result = false;
-        if (Object.isDefined(someNumber) && !isNaN(someNumber)) {
+        if (Object.prototype.isDefined(someNumber) && !isNaN(someNumber)) {
             if (typeof someNumber === "number" || (typeof someNumber === "object" && someNumber instanceof Number)) {
                 result = true;
             }
@@ -90,9 +105,9 @@
      * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is a boolean, otherwise false.
      * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
      */
-    Object.isBoolean = function (someBoolean) {
+    Object.prototype.isBoolean = function (someBoolean) {
         var result = false;
-        if (Object.isDefined(someBoolean)) {
+        if (Object.prototype.isDefined(someBoolean)) {
             if (typeof someBoolean === "boolean" || (typeof someBoolean === "object" && someBoolean instanceof Boolean)) {
                 result = true;
             }
@@ -101,24 +116,10 @@
         return result;
     };
 
-    /**
-     * <p>Static function that tells you whether an object is defined or not.</p>
-     * @static
-     * @param <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Object of some type</a> The object that will be tested to see if it is defined.
-     * @returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> True if an object is defined, otherwise false.
-     * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
-     */
-    Object.isDefined = function (target) {
-        var result = false;
-        if (target !== undefined && target !== null) {
-            result = true;
-        }
-        return result;
-    };
-    Object.isRegEx = function (someRegEx) {
+    Object.prototype.isRegEx = function (someRegEx) {
         var result = false;
 
-        if (Object.isDefined(someRegEx)) {
+        if (Object.prototype.isDefined(someRegEx)) {
             if (typeof someRegEx === "object" || someRegEx instanceof RegExp) {
                 result = true;
             }
@@ -126,11 +127,11 @@
 
         return result;
     };
-    Object.getProperty = function (obj, p) {
+    Object.prototype.getProperty = function (obj, p) {
         var pFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1),
             value = null;
 
-        if (Object.isString(obj)) {
+        if (Object.prototype.isString(obj)) {
             obj = JSON.parse(obj);
             value = obj[p];
         } else {
@@ -143,7 +144,7 @@
 
         return value;
     };
-    Object.setProperty = function (obj, p, v) {
+    Object.prototype.setProperty = function (obj, p, v) {
         var pFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1);
 
         if (Object.hasProperty(obj, p)) {
@@ -152,7 +153,7 @@
             obj[pFunction](v);
         }
     };
-    Object.hasProperty = function (obj, p) {
+    Object.prototype.hasProperty = function (obj, p) {
         var hasProperty = false;
 
         if (obj.hasOwnProperty(p)) {
@@ -161,7 +162,7 @@
 
         return hasProperty;
     };
-    Object.hasFunction = function (obj, p) {
+    Object.prototype.hasFunction = function (obj, p) {
         var hasFunction = false,
             pSetFunction = "set" + p.substring(0, 1).toUpperCase() + p.substring(1),
             pGetFunction = "get" + p.substring(0, 1).toUpperCase() + p.substring(1);
@@ -174,7 +175,7 @@
 
         return hasFunction;
     };
-    Object.isFunction = function (target) {
+    Object.prototype.isFunction = function (target) {
         var isFunction = false;
 
         if (Object.isDefined(target)) {
@@ -186,7 +187,7 @@
         return isFunction;
     };
 
-    Object.isConstructorFunction = function (targetFunction) {
+    Object.prototype.isConstructorFunction = function (targetFunction) {
         var isConstructorFunction = false,
             isNotFirstLetterUppercase;
 
@@ -220,7 +221,7 @@
      * @param {Object} someObject The object that will be tested to see if it is defined and not null.
      * @returns {boolean} True if an object is defined and not null, otherwise returns false.
      */
-    Object.isDefinedAndNotNull = function (someObject) {
+    Object.prototype.isDefinedAndNotNull = function (someObject) {
         var result = false;
 
         if (someObject !== undefined && someObject !== null) {
@@ -237,7 +238,7 @@
      * @param {Object} someObject The object that will be tested to see if it is undefined or null.
      * @returns {boolean} True if an object is undefined and null, otherwise returns false.
      */
-    Object.isUndefinedOrNull = function (someObject) {
+    Object.prototype.isUndefinedOrNull = function (someObject) {
         var result = false;
 
         if (someObject === undefined || someObject === null) {
